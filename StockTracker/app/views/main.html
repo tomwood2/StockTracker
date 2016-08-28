@@ -1,0 +1,87 @@
+<div class="container">
+
+	<div class="row">
+		<div class="col-sm-6">
+			<div class="card">
+				<h3 class="card-header">Select Stock</h3>
+				<div class="card-block">
+					<label class="control-label">
+						Symbol:
+					</label>
+					<div class="input-group">
+						<input width="5" class="form-control" placeholder="enter symbol..." autofocus ng-model="main.symbol">
+						<button type="button" class="btn btn-primary input-group-addon" ng_click="main.lookup(main.symbol)">
+							<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+						</button>
+					</div>
+
+					<table class="table">
+						<thead>
+							<tr>
+								<th ng-repeat="columnHeading in main.portfolio.columnHeadings">
+									{{ columnHeading }}
+								</th>
+						</thead>
+						<tbody>
+							<tr>
+								<td>{{main.quote.Symbol}}</td>
+								<td>{{main.quote.LastPrice | currency:""}}</td>
+								<td>{{main.quote.Change | currency:""}}</td>
+								<td>{{main.quote.ChangePercent | number:2}}</td>
+							</tr>
+						</tbody>
+
+					</table>
+
+					<table class="table">
+						<!--<thead>
+							<tr>
+								<th ng-repeat="columnHeading in main.portfolio.columnHeadings">
+									{{ columnHeading }}
+								</th>
+						</thead>-->
+						<tbody>
+							<tr ng-repeat="(key, value) in main.quote">
+								<td> {{key}} </td>
+								<td> {{ value }} </td>
+							</tr>
+						</tbody>
+
+					</table>
+
+				</div> <!--card block-->
+			</div>  <!--card-->
+		</div>	<!--col-->
+
+
+		<div class="col-sm-6">
+			<div class="card">
+				<h3 class="card-header">Portfolio</h3>
+				<div class="card-block">
+
+					<table class="table">
+						<thead>
+							<tr>
+								<th ng-repeat="columnHeading in main.portfolio.columnHeadings">
+									{{ columnHeading }}
+								</th>
+						</thead>
+
+						<tbody>
+							<tr ng-repeat="item in main.portfolio.items">
+								<td>{{ item.symbol | uppercase }}</td>
+								<td>{{ item.lastPrice | currency:"" }}</td>
+								<td>{{ item.change | currency:"" }}</td>
+								<td>{{ item.percentChange | number:2 }}</td>
+							</tr>
+						</tbody>
+
+					</table>
+
+				</div> <!--card block-->
+			</div>  <!--card-->
+		</div>	<!--col-->
+	</div>  <!--row-->
+
+</div> <!--container-->
+
